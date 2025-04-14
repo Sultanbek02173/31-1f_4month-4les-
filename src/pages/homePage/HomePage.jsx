@@ -8,6 +8,7 @@ export const HomePage = () => {
             <About />
             <Menu />
             <Delivery />
+            
         </div>
     );
 }

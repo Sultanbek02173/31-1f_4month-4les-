@@ -1,4 +1,5 @@
-export { Header } from './header/Header'
+export { Header } from './header/Header';
+export { Footer } from './footer/Footer';
 
 // home page sections
 
