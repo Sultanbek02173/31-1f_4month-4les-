@@ -1,9 +1,10 @@
+import { Dish } from '../../components';
 import './menuPage.scss';
 
 export const MenuPage = () => {
     return (
-        <div>
-            menu page
+        <div className='menu-page'>
+            <Dish />
         </div>
     );
 }

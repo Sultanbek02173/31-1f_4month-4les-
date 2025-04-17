@@ -4,7 +4,7 @@ import './header.scss';
 export const Header = () => {
     return (
         <header>
-            <nav>
+            <nav className='links'>
                 <NavLink to={'/'}><li>Главная</li></NavLink>
                 <NavLink to={'/menu-page'}><li>Меню</li></NavLink>
                 <button>Бронь столика</button>
