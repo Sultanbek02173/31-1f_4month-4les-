@@ -4,6 +4,7 @@ import { Footer, Header } from './components';
 import './app.scss';
 import { Modal } from './components/modal/Modal';
 import { useState } from 'react';
+import BasketPage from './pages/basketPage/BasketPage';
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -22,6 +23,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/card-page/:id' element={<CardPage />} />
         <Route path='/menu-page' element={<MenuPage />} />
+        <Route path='/basket-page' element={<BasketPage />} />
       </Routes>
       <Footer />
     </BrowserRouter>
