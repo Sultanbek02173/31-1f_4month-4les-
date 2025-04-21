@@ -2,15 +2,25 @@ import { useEffect, useState } from "react";
 import { Cart } from "../../features";
 import './menu.scss';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 export const Dish = () => {
-    const [dishes, setDishes] = useState();
+    const [dishes, setDishes] = useState([]);
     const [catogory, setCategory] = useState('all');
-    const [filtered, setFiltered] = useState()
-    const filter = () => {
+    const [filtered, setFiltered] = useState();    
 
-        const filterData = dishes.map
+    const filter = () => {
+        if(catogory === 'all'){
+            setFiltered(dishes);
+        }else{
+            const filterData = dishes.filter((dish) => dish.type === catogory);
+            setFiltered(filterData);
+        }
     }
+
+    useEffect(() => {
+        filter();
+    })
 
     useEffect(() => {
         axios('http://localhost:5000/dishes')
@@ -20,18 +30,24 @@ export const Dish = () => {
     return (
         <div className="container">
             <div className="navigate">
-                <p>Все</p>
-                <p>Завтрак</p>
-                <p>1 блюдо</p>
-                <p>2 блюдо</p>
-                <p>Десерты</p>
-                <p>Напитки</p>
+                <p onClick={() => {setCategory('all')}}>Все</p>
+                <p onClick={() => {setCategory('lanch')}}>Завтрак</p>
+                <p onClick={() => {setCategory('firstDishes')}}>1 блюдо</p>
+                <p onClick={() => {setCategory('secondDishes')}}>2 блюдо</p>
+                <p onClick={() => {setCategory('desert')}}>Десерты</p>
+                <p onClick={() => {setCategory('drinks')}}>Напитки</p>
             </div> 
             <div className="dishes">
                 {
-                    dishes && catogory === 'all' &&
-                    dishes.map((dish) => (
-                        <Cart key={dish.id} img={dish.img} text={dish.title} price={dish.price} />
+                    filtered &&
+                    filtered.map((dish) => (
+                        <Link to={`/card-page/${dish.id}`}>
+                            <Cart 
+                                key={dish.id} 
+                                img={dish.img} 
+                                text={dish.title} 
+                                price={dish.price} />
+                        </Link>
                     ))
                 }
             </div> 
